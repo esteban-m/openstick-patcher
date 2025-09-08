@@ -1,9 +1,10 @@
 # Track large binary files with Git LFS
-*.bin filter=lfs diff=lfs merge=lfs -text
 *.mbn filter=lfs diff=lfs merge=lfs -text
 
-# Specific large files
-initial.bin filter=lfs diff=lfs merge=lfs -text
+# Specific large files (excluding initial.bin - too large for GitHub LFS)
 patch/rootfs.bin filter=lfs diff=lfs merge=lfs -text
 stock/ufi001b/modem.bin filter=lfs diff=lfs merge=lfs -text
 stock/uz801/modem.bin filter=lfs diff=lfs merge=lfs -text
+
+# Exclude very large files that exceed GitHub's 2GB LFS limit
+initial.bin
