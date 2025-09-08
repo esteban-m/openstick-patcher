@@ -14,7 +14,11 @@ This repository contains firmware patches and stock firmware files for OpenStick
 
 The patching process follows a specific sequence to ensure everything works correctly:
 
-→ 1. **Download Initial Image** → 2. **Backup Stock Partitions** → 3. **Update Patches** → 4. **Flash Everything**
+1. [**Download Initial Image**](#1-download_initialsh) 
+2. [**Backup Stock Partitions**](#2-download_stocksh) (if you have a new motherboard variant)
+3. [**Update Patches**](#3-update_patchsh) (if this repository is not up to date)
+4. [**Flash Everything**](#4-upload_patchsh) 
+5. [**Access Terminal key**](#5-access_keysh) (for debugging and maintenance)
 
 ## Scripts Usage
 
@@ -86,6 +90,22 @@ Flashes everything to the device in the correct order.
 
 **When to use:** Final step to flash everything to your OpenStick device.
 
+### 5. `access_key.sh`
+Provides easy access to the OpenStick via serial connection for debugging and maintenance.
+
+```bash
+./access_key.sh
+```
+
+**What it does:**
+- Automatically detects the serial device (works on both macOS and Linux)
+- Connects to the OpenStick via `screen` at 115200 baud
+- Provides instructions for exiting the session
+
+**When to use:** When you need to access the OpenStick shell for debugging, configuration, or troubleshooting.
+
+**Note:** To exit the session, press `Ctrl+A` then `K` (kill session) or `Ctrl+A` then `D` (detach session).
+
 ## Prerequisites
 
 - **EDL (Emergency Download Mode)** - For initial flashing and stock partition backup
@@ -94,12 +114,13 @@ Flashes everything to the device in the correct order.
 - **unzip** - For extracting archives
 - **jq** - For parsing JSON from GitHub API
 - **curl** - For API requests
+- **screen** - For serial communication with the OpenStick
 
 1. **Install EDL from [this repo (bkerler/edl)](https://github.com/bkerler/edl)**
 
-2. Install adb, fastboot, wget, unzip, jq, curl
+2. Install adb, fastboot, wget, unzip, jq, curl, screen
 ```bash
-sudo apt install adb fastboot wget unzip jq curl
+sudo apt install adb fastboot wget unzip jq curl screen
 ```
 
 
